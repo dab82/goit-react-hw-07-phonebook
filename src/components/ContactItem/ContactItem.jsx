@@ -1,24 +1,28 @@
-import { useDispatch } from 'react-redux';
-import { remove } from '../../redux/actions';
-import { Item } from './ContactItemStyle';
+import { Item, Name, PhoneNumber } from './ContactItemStyle';
 import { ReactComponent as DeleteIcon } from '../../Icon/delicon.svg';
 import { IconButton } from '../Buttons/IconButton';
+import { useRemoveContactsMutation } from 'redux/api/contactsApi';
 import propTypes from 'prop-types';
+import { Loader } from 'components/Loader/Loader';
 
 export const ContactItem = ({ id, name, number }) => {
-  const dispatch = useDispatch();
-  const onDeleteContact = id => dispatch(remove(id));
+  const [removeContacts, { isLoading }] = useRemoveContactsMutation();
+
   return (
-    <Item>
-      <span>{name}:</span>
-      <span>{number} </span>
-      <IconButton
-        aria-label="Delete contact"
-        onClick={() => onDeleteContact(id)}
-      >
-        <DeleteIcon />
-      </IconButton>
-    </Item>
+    <>
+      {isLoading && <Loader />}
+      <Item>
+        <Name>{name}:</Name>
+        <PhoneNumber>{number} </PhoneNumber>
+        <IconButton
+          aria-label="Delete contact"
+          onClick={() => removeContacts(id)}
+          disabled={isLoading}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </Item>
+    </>
   );
 };
 

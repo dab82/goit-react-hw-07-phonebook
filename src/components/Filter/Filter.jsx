@@ -6,15 +6,13 @@ import propTypes from 'prop-types';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const handleChange = ({ target: { value } }) => {
-    dispatch(filterContact(value));
-  };
+  const handleChange = event => dispatch(filterContact(event.target.value));
 
   return (
     <FilterWrapper>
       <LabelForm htmlFor="filter">Find contacts by name</LabelForm>
       <div>
-        <FilterInput name="filter" type="filter" onChange={handleChange} />
+        <FilterInput name="filter" type="text" onChange={handleChange} />
       </div>
     </FilterWrapper>
   );
