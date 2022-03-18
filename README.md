@@ -60,4 +60,5 @@ Pages, в ветку `gh-pages`, каждый раз когда обновляе
 в отредактированном свойстве `homepage`, например
 [https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
 
-( "homepage": "https://dab82.github.io/goit-react-hw-06-phonebook",)
+( "predeploy": "npm run build", "deploy": "netlify deploy -p" "homepage":
+"https://dab82.github.io/goit-react-hw-06-phonebook",)
